@@ -71,10 +71,11 @@ public class StepDefinitions {
 		}
 		@Then("I continue to Check your email for verification")
 		public void i_continue_to_check_your_email_for_verification() throws InterruptedException {
-			WebElement checkEmail = driver.findElement(By.xpath("/html/body/div[1]/div/div[1]/div[2]/main/div/div/div/div/div/div/div/h1"));
+			WebElement checkEmail = driver.findElement(By.cssSelector(".\\!margin-bottom--lv3"));
 			assertEquals("Check your email", checkEmail.getText());
 			Thread.sleep(1000);
 			driver.close();
+			///html/body/div[1]/div/div[1]/div[2]/main/div/div/div/div/div/div/div/h1
 		}
 			@Then("It tells me Enter a value less than {int} characters long")
 			public void it_tells_me_enter_a_value_less_than_characters_long(Integer int1) throws InterruptedException {
