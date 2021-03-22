@@ -8,6 +8,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import io.cucumber.java.Before;
 import io.cucumber.java.en.Given;
@@ -18,7 +20,7 @@ import junit.framework.Assert;
 public class StepDefinitions {
 		private WebDriver driver;
 		Random randomGenerator = new Random();  
-		int randomInt = randomGenerator.nextInt(1000);
+		int randomInt = randomGenerator.nextInt(10000);
 		
 		@Before
 		public void openBrowser() throws InterruptedException {
@@ -63,8 +65,9 @@ public class StepDefinitions {
 			
 		@When("I press sign up")
 		public void i_press_sign_up() {
-			WebElement signUp = driver.findElement(By.id("create-account"));
-		    signUp.submit();
+			//WebElement signUp = driver.findElement(By.id("create-account"));
+		    //signUp.submit();
+		    click(driver, By.id("create-account"));
 		}
 		@Then("I continue to Check your email for verification")
 		public void i_continue_to_check_your_email_for_verification() throws InterruptedException {
@@ -94,4 +97,12 @@ public class StepDefinitions {
 						Thread.sleep(1000);
 						driver.close();
 					}
+					
+					
+	public void click(WebDriver driver, By by) {
+		(new WebDriverWait(driver,10)).until(ExpectedConditions.
+				
+				elementToBeClickable(by));
+				driver.findElement(by).click();
+	}
 }
