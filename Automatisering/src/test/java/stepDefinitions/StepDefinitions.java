@@ -21,6 +21,7 @@ public class StepDefinitions {
 		private WebDriver driver;
 		Random randomGenerator = new Random();  
 		int randomInt = randomGenerator.nextInt(10000);
+		String longUsername = "usernameeeusernameeeusernameeeusernameeeusernameeeusernameeeusernameeeusernameeeusernameeeusernameeee";
 		
 		@Before
 		public void openBrowser() throws InterruptedException {
@@ -52,8 +53,8 @@ public class StepDefinitions {
 				WebElement email = driver.findElement(By.id("email"));
 				email.sendKeys("email" + randomInt + "@hotmail.com");
 		}
-			@Given("I have also entered usernameeeusernameeeusernameeeusernameeeusernameeeusernameeeusernameeeusernameeeusernameeeusernameeee into as the username slot")
-			public void i_have_also_entered_usernameeeusernameeeusernameeeusernameeeusernameeeusernameeeusernameeeusernameeeusernameeeusernameeee_into_as_the_username_slot() {
+			@Given("I have also entered longUsername into as the username slot")
+			public void i_have_also_entered_longUsername_into_as_the_username_slot() {
 				WebElement username = driver.findElement(By.id("new_username"));
 			    username.sendKeys("usernameeeusernameeeusernameeeusernameeeusernameeeusernameeeusernameeeusernameeeusernameeeusernameeee");			    
 			}

@@ -20,7 +20,7 @@ When I press sign up
 Then It tells me <verify>
 Examples:
 |email|hotmail|username                                                                                             |password    |verify|
-|email|hotmail|usernameeeusernameeeusernameeeusernameeeusernameeeusernameeeusernameeeusernameeeusernameeeusernameeee|Password123&|Enter a value less than 100 characters long|
+|email|hotmail|longUsername|Password123&|Enter a value less than 100 characters long|
 
 @testfall3
 Scenario Outline: Create account - username already taken
