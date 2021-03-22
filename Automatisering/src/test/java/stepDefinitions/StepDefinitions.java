@@ -21,7 +21,8 @@ public class StepDefinitions {
 		private WebDriver driver;
 		Random randomGenerator = new Random();  
 		int randomInt = randomGenerator.nextInt(10000);
-		String longUsername = "usernameeeusernameeeusernameeeusernameeeusernameeeusernameeeusernameeeusernameeeusernameeeusernameeee";
+		String longUsername = "username";
+		String repeated = longUsername.repeat(13);
 		
 		@Before
 		public void openBrowser() throws InterruptedException {
@@ -56,7 +57,7 @@ public class StepDefinitions {
 			@Given("I have also entered longUsername into as the username slot")
 			public void i_have_also_entered_longUsername_into_as_the_username_slot() {
 				WebElement username = driver.findElement(By.id("new_username"));
-			    username.sendKeys("usernameeeusernameeeusernameeeusernameeeusernameeeusernameeeusernameeeusernameeeusernameeeusernameeee");			    
+			    username.sendKeys(repeated);			    
 			}
 				@Given("I have also entered Adam653 into username slot")
 				public void i_have_also_entered_adam653_into_username_slot() {
