@@ -26,8 +26,8 @@ public class StepDefinitions {
 		
 		@Before
 		public void openBrowser() throws InterruptedException {
-			System.setProperty("webdriver.chrome.driver", "C:\\Users\\Svens\\OneDrive\\Desktop\\Selenium\\chromedriver.exe");
-			driver = new ChromeDriver();
+			DriveCreator creator = new DriveCreator();
+			driver = creator.createBrowser("firefox");
 		    driver.get("https://login.mailchimp.com/signup/");
 		    driver.manage().window().maximize();
 		    Thread.sleep(2000);
