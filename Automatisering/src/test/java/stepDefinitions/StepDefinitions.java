@@ -36,39 +36,38 @@ public class StepDefinitions {
 		}
 		@Given("I have entered email + randomInt + hotmail into the e-mail slot")
 		public void i_have_entered_email_random_int_hotmail_into_the_e_mail_slot() {
-			WebElement email = driver.findElement(By.id("email"));
-			email.sendKeys("email" + randomInt + "@hotmail.com");
+			
+			driver.findElement(By.id("email")).sendKeys("email" + randomInt + "@hotmail.com");			
 		}
 		@Given("I have also entered username + randomInt into the username slot")
 		public void i_have_also_entered_username_random_int_into_the_username_slot() {
-			WebElement username = driver.findElement(By.id("new_username"));
-			username.sendKeys("username" + randomInt);
+			
+			driver.findElement(By.id("new_username")).sendKeys("username" + randomInt);	
 		}
 		@Given("I have also entered Password123& into the password slot")
 		public void i_have_also_entered_password123_into_the_password_slot() {
-			WebElement password = driver.findElement(By.id("new_password"));
-			password.sendKeys("Password123*");
+			
+			driver.findElement(By.id("new_password")).sendKeys("Password123*");			
 		}
 			@Given("I have entered email + randomInt + hotmail in the e-mail slot")
 			public void i_have_entered_email_random_int_hotmail_in_the_e_mail_slot() {
-				WebElement email = driver.findElement(By.id("email"));
-				email.sendKeys("email" + randomInt + "@hotmail.com");
+				
+				driver.findElement(By.id("email")).sendKeys("email" + randomInt + "@hotmail.com");				
 		}
 			@Given("I have also entered longUsername into as the username slot")
 			public void i_have_also_entered_longUsername_into_as_the_username_slot() {
-				WebElement username = driver.findElement(By.id("new_username"));
-			    username.sendKeys(repeated);			    
+				
+				driver.findElement(By.id("new_username")).sendKeys(repeated);		    			    
 			}
 				@Given("I have also entered Adam653 into username slot")
 				public void i_have_also_entered_adam653_into_username_slot() {
-					WebElement username = driver.findElement(By.id("new_username"));
-				    username.sendKeys("Adam653");
+					
+					driver.findElement(By.id("new_username")).sendKeys("Adam653");			    
 			}
 			
 		@When("I press sign up")
 		public void i_press_sign_up() {
-			//WebElement signUp = driver.findElement(By.id("create-account"));
-		    //signUp.submit();
+			
 		    click(driver, By.id("create-account"));
 		}
 		@Then("I continue to Check your email for verification")
@@ -77,7 +76,6 @@ public class StepDefinitions {
 			assertEquals("Check your email", checkEmail.getText());
 			Thread.sleep(1000);
 			driver.close();
-			///html/body/div[1]/div/div[1]/div[2]/main/div/div/div/div/div/div/div/h1
 		}
 			@Then("It tells me Enter a value less than {int} characters long")
 			public void it_tells_me_enter_a_value_less_than_characters_long(Integer int1) throws InterruptedException {
@@ -108,4 +106,8 @@ public class StepDefinitions {
 				elementToBeClickable(by));
 				driver.findElement(by).click();
 	}
+	/*private void sendKeys(WebDriver driver, By by) {
+		(new WebDriverWait(driver,10)).until(ExpectedConditions.presenceOfElementLocated(by));
+			driver.findElement(by).sendKeys("email" + randomInt + "hotmail.com");
+	}*/
 }
