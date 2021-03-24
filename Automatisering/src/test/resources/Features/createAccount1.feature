@@ -1,5 +1,5 @@
 Feature: Create account
-
+//Göra om email osv till variablar att använda till sendkeys metod i stepdef
 @testfall1
 Scenario Outline: Create account - everything goes as expected
 Given I have entered <email> + randomInt + <hotmail> into the e-mail slot
