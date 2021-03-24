@@ -5,6 +5,7 @@ import static org.junit.Assert.assertEquals;
 import java.util.Random;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -24,45 +25,47 @@ public class StepDefinitions {
 		String longUsername = "username";
 		String repeated = longUsername.repeat(13);
 		
+		
+		
 		@Before
 		public void openBrowser() throws InterruptedException {
 			DriveCreator creator = new DriveCreator();
-			driver = creator.createBrowser("firefox");
+			driver = creator.createBrowser("chrome");
 		    driver.get("https://login.mailchimp.com/signup/");
 		    driver.manage().window().maximize();
 		    Thread.sleep(2000);
 		    driver.findElement(By.id("onetrust-accept-btn-handler")).click();
 		    Thread.onSpinWait();
 		}
-		@Given("I have entered email + randomInt + hotmail into the e-mail slot")
-		public void i_have_entered_email_random_int_hotmail_into_the_e_mail_slot() {
+		@Given("I have entered {string} + randomInt + {string} into the e-mail slot")
+		public void i_have_entered_random_int_into_the_e_mail_slot(String string, String string2) {
 			
-			driver.findElement(By.id("email")).sendKeys("email" + randomInt + "@hotmail.com");			
+			sendKeys(driver, By.id("email"), string + randomInt + string2);			
 		}
-		@Given("I have also entered username + randomInt into the username slot")
-		public void i_have_also_entered_username_random_int_into_the_username_slot() {
+		@Given("I have also entered {string} + randomInt into the username slot")
+		public void i_have_also_entered_random_int_into_the_username_slot(String string) {
 			
-			driver.findElement(By.id("new_username")).sendKeys("username" + randomInt);	
+			sendKeys(driver, By.id("new_username"), string + randomInt);
 		}
-		@Given("I have also entered Password123& into the password slot")
-		public void i_have_also_entered_password123_into_the_password_slot() {
+		@Given("I have also entered {string} into the password slot")
+		public void i_have_also_entered_into_the_password_slot(String string) {
 			
-			driver.findElement(By.id("new_password")).sendKeys("Password123*");			
+			sendKeys(driver, By.id("new_password"), string);		
 		}
-			@Given("I have entered email + randomInt + hotmail in the e-mail slot")
-			public void i_have_entered_email_random_int_hotmail_in_the_e_mail_slot() {
+			@Given("I have entered {string} + randomInt + {string} in the e-mail slot")
+			public void i_have_entered_random_int_in_the_e_mail_slot(String string, String string2) {
 				
-				driver.findElement(By.id("email")).sendKeys("email" + randomInt + "@hotmail.com");				
+				sendKeys(driver, By.id("email"), string + randomInt + string2);				
 		}
-			@Given("I have also entered longUsername into as the username slot")
-			public void i_have_also_entered_longUsername_into_as_the_username_slot() {
+			@Given("I have also entered {string} into as the username slot")
+			public void i_have_also_entered__into_as_the_username_slot(String string) {
 				
-				driver.findElement(By.id("new_username")).sendKeys(repeated);		    			    
+				sendKeys(driver, By.id("new_username"), repeated); 			    
 			}
-				@Given("I have also entered Adam653 into username slot")
-				public void i_have_also_entered_adam653_into_username_slot() {
+				@Given("I have also entered {string} into username slot")
+				public void i_have_also_entered_into_username_slot(String string) {
 					
-					driver.findElement(By.id("new_username")).sendKeys("Adam653");			    
+					sendKeys(driver, By.id("new_username"), string);		    
 			}
 			
 		@When("I press sign up")
@@ -70,44 +73,43 @@ public class StepDefinitions {
 			
 		    click(driver, By.id("create-account"));
 		}
-		@Then("I continue to Check your email for verification")
-		public void i_continue_to_check_your_email_for_verification() throws InterruptedException {
+		@Then("I continue to {string} for verification")
+		public void i_continue_to_verification(String string) throws InterruptedException {
 			WebElement checkEmail = driver.findElement(By.cssSelector(".\\!margin-bottom--lv3"));
-			assertEquals("Check your email", checkEmail.getText());
+			assertEquals(string, checkEmail.getText());
 			Thread.sleep(1000);
 			driver.close();
 		}
-			@Then("It tells me Enter a value less than {int} characters long")
-			public void it_tells_me_enter_a_value_less_than_characters_long(Integer int1) throws InterruptedException {
+			@Then("It tells me {string}")
+			public void it_tells_me(String string) throws InterruptedException {
 				WebElement hundred = driver.findElement(By.className("invalid-error"));
-				assertEquals("Enter a value less than 100 characters long", hundred.getText());
+				assertEquals(string, hundred.getText());
 				Thread.sleep(1000);
 				driver.close();
 		}
-				@Then("It will tell me Another user with this username already exists. Maybe it's your evil twin. Spooky.")
-				public void it_will_tell_me_another_user_with_this_username_already_exists_maybe_it_s_your_evil_twin_spooky() throws InterruptedException {
+				@Then("It will tell me {string}")
+				public void it_will_tell_me(String string) throws InterruptedException {
 				WebElement username = driver.findElement(By.className("invalid-error"));
-				assertEquals("Another user with this username already exists. Maybe it's your evil twin. Spooky.", username.getText());
+				assertEquals(string, username.getText());
 				Thread.sleep(1000);
 				driver.close();
 			}
-					@Then("It tells me Please enter a value under the e-mail slot")
-					public void it_tells_me_please_enter_a_value_under_the_e_mail_slot() throws InterruptedException {
+					@Then("It tells me {string} under the e-mail slot")
+					public void it_tells_me_under_the_e_mail_slot(String string) throws InterruptedException {
 						WebElement value = driver.findElement(By.className("invalid-error"));
-						assertEquals("Please enter a value", value.getText());
+						assertEquals(string, value.getText());
 						Thread.sleep(1000);
 						driver.close();
 					}
+					public void click(WebDriver driver, By by) {
+						(new WebDriverWait(driver,10)).until(ExpectedConditions.
 					
-					
-	public void click(WebDriver driver, By by) {
-		(new WebDriverWait(driver,10)).until(ExpectedConditions.
-				
-				elementToBeClickable(by));
-				driver.findElement(by).click();
-	}
-	/*private void sendKeys(WebDriver driver, By by) {
-		(new WebDriverWait(driver,10)).until(ExpectedConditions.presenceOfElementLocated(by));
-			driver.findElement(by).sendKeys("email" + randomInt + "hotmail.com");
-	}*/
+								elementToBeClickable(by));
+								driver.findElement(by).click();
+						}
+						public void sendKeys(WebDriver driver, By by, String keys) {
+							(new WebDriverWait(driver,10)).until(ExpectedConditions.presenceOfElementLocated(by));
+							driver.findElement(by).sendKeys(keys);
+
+				}
 }
